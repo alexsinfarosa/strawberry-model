@@ -1,0 +1,1 @@
+NEWA Strawberry Forecast Model
