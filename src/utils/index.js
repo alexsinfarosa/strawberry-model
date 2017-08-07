@@ -507,12 +507,12 @@ export const getData = async (
     results[i]["dateText"] = format(day.date, "MMMM Do");
 
     // date to display in tables
-    let dateTable = format(day.date, "MMM D");
-    const today = new Date();
-    if (isAfter(day.date, today)) {
-      dateTable = `${dateTable} - Forecast`;
-    }
-    results[i]["dateTable"] = dateTable;
+    // let dateTable = format(day.date, "MMM D");
+    // const today = new Date();
+    // if (isAfter(day.date, today)) {
+    //   dateTable = `${dateTable} - Forecast`;
+    // }
+    results[i]["dateTable"] = day.date;
 
     // Return true if arrays do not contain missing values
     // const isRhClean = day.rhFinal.filter(e => e === "M").length === 0;
@@ -559,4 +559,24 @@ export const getData = async (
   }
   // results.map(e => console.log(e));
   return results;
+};
+
+// Berries model ----------------------------------------------------------------------------
+export const botrytisModel = data => {
+  const W = data.W;
+  const T = data.T;
+  const i = -4.268 + 0.0294 * W * T - 0.0901 * W - 0.0000235 * W * T ** 3;
+  return (1 / (1 + Math.exp(-i))).toFixed(2);
+};
+
+export const anthracnoseModel = data => {
+  const W = data.W;
+  const T = data.T;
+  const i =
+    -3.7 +
+    0.33 * W -
+    0.069 * W * T +
+    0.005 * W * T ** 2 -
+    0.000093 * W * T ** 3;
+  return (1 / (1 + Math.exp(-i))).toFixed(2);
 };

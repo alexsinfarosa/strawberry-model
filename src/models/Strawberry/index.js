@@ -14,7 +14,7 @@ import { Flex, Box, Heading } from "rebass";
 import "styles/shared.styl";
 
 // styled components
-import { Value, Info, CSVButton } from "./styles";
+import { Value, Info, CSVButton, A } from "./styles";
 
 import Table from "antd/lib/table";
 import "antd/lib/table/style/css";
@@ -107,7 +107,6 @@ export default class Strawberry extends Component {
       strawberries
     } = this.props.store.app;
     const { mobile } = this.props;
-    console.log(ACISData.slice());
 
     // To display the 'forecast text' and style the cell
     const forecastText = date => {
@@ -158,13 +157,7 @@ export default class Strawberry extends Component {
           <Value mb={1} style={{ color: record.color }}>
             {text}
           </Value>
-          <Info
-            col={7}
-            lg={3}
-            md={3}
-            sm={7}
-            style={{ background: record.color }}
-          >
+          <Info style={{ background: record.color }}>
             {record.riskLevel}
           </Info>
         </Flex>
@@ -219,26 +212,30 @@ export default class Strawberry extends Component {
                 {displayPlusButton
                   ? <Table
                       bordered
-                      size="small"
+                      size={mobile ? "small" : "middle"}
                       columns={columns}
-                      rowKey={record => record.dateTable}
+                      rowKey={record => record.date}
                       loading={ACISData.length === 0}
                       pagination={false}
                       dataSource={
-                        areRequiredFieldsSet ? takeRight(ACISData, 8) : null
+                        areRequiredFieldsSet
+                          ? takeRight(strawberries, 8).map(day => day)
+                          : null
                       }
                       expandedRowRender={record => description(record)}
                     />
                   : <Table
-                      rowClassName={(rec, idx) => this.rowColor(idx)}
+                      // rowClassName={(rec, idx) => this.rowColor(idx)}
                       bordered
                       size="middle"
                       columns={columns}
-                      rowKey={record => record.dateTable}
+                      rowKey={record => record.date}
                       loading={ACISData.length === 0}
                       pagination={false}
                       dataSource={
-                        areRequiredFieldsSet ? takeRight(ACISData, 8) : null
+                        areRequiredFieldsSet
+                          ? takeRight(strawberries, 8).map(day => day)
+                          : null
                       }
                     />}
               </Box>
@@ -253,18 +250,16 @@ export default class Strawberry extends Component {
               <Box>NA - not available</Box>
 
               <Box>
-                <Button
-                  type="secondary"
-                  icon="link"
+                <A
                   target="_blank"
                   href={`http://forecast.weather.gov/MapClick.php?textField1=${station.lat}&textField2=${station.lon}`}
                 >
                   {" "}Forecast Details
-                </Button>
+                </A>
               </Box>
             </Flex>
 
-            <Flex my={1}>
+            <Flex my={2}>
               <Box w={["100%", "90%", "90%"]}>
                 <i>
                   <em style={{ color: "black" }}>

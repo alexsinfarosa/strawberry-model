@@ -18,6 +18,7 @@ export const Info = styled(Box)`
   justify-content: center;
   align-items: center;
   font-size: .75rem;
+  min-width: 60%;
   ${"" /* height: 20px; */}
   color: white;
   border-radius: 5px;
@@ -27,11 +28,22 @@ export const Info = styled(Box)`
   padding-bottom: 1px;
 
   @media (max-width: 992px) {
-    font-size: .65rem;
+    font-size: .75rem;
+    min-width: 60%;
+
   }
   @media (max-width: 768px) {
     font-size: .65rem;
+    min-width: 80%;
+
   }
+`;
+
+export const A = styled.a`
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  padding: 10px;
+  color: #828282;
 `;
 
 export const CSVButton = styled(CSVLink)`
