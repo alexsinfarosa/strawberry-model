@@ -61,7 +61,7 @@ export default class AppStore {
   ];
 
   @observable
-  subject = JSON.parse(localStorage.getItem("berry")) || {
+  subject = JSON.parse(localStorage.getItem("strawberries")) || {
     name: "Strawberries",
     diseases: ["botrytis", "anthracnose"],
     graph: false
@@ -76,7 +76,7 @@ export default class AppStore {
   @action
   setSubject = d => {
     this.subject = this.subjects.find(subject => subject.name === d);
-    localStorage.setItem(`berry`, JSON.stringify(this.subject));
+    localStorage.setItem(`strawberries`, JSON.stringify(this.subject));
   };
 
   // State----------------------------------------------------------------------
