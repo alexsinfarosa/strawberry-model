@@ -45,11 +45,3 @@ export const A = styled.a`
   padding: 10px;
   color: #828282;
 `;
-
-export const CSVButton = styled(CSVLink)`
-  color: #828282;
-  margin-left: 5px;
-  &:hover {
-    color: #138FE9
-  }
-`;
