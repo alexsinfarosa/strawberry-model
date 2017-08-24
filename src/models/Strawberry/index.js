@@ -6,7 +6,7 @@ import takeRight from "lodash/takeRight";
 import format from "date-fns/format";
 import isAfter from "date-fns/is_after";
 import isWithinRange from "date-fns/is_within_range";
-
+import  IconNewa  from "components/newa-logo.svg";
 //  reflexbox
 import { Flex, Box, Heading } from "rebass";
 
@@ -259,7 +259,7 @@ export default class Strawberry extends Component {
               </Box>
             </Flex>
 
-            <Flex my={2}>
+            <Flex my={2} column>
               <Box w={["100%", "90%", "90%"]}>
                 <i>
                   <em style={{ color: "black" }}>
@@ -272,6 +272,16 @@ export default class Strawberry extends Component {
                   pest presence, and disease occurrence determined through
                   scouting or insect pheromone traps.
                 </i>
+              </Box>
+              <Box w={["100%", "90%", "90%"]} justify="center">
+                <img
+                  src={IconNewa}
+                  alt="Newa Logo"
+                  style={{
+                    width: "60px",
+                    height: "60px"
+                  }}
+                />
               </Box>
             </Flex>
           </Flex>
