@@ -6,7 +6,7 @@ import takeRight from "lodash/takeRight";
 import format from "date-fns/format";
 import isAfter from "date-fns/is_after";
 import isWithinRange from "date-fns/is_within_range";
-import  IconNewa  from "components/newa-logo.svg";
+import IconNewa from "components/newa-logo.svg";
 //  reflexbox
 import { Flex, Box, Heading } from "rebass";
 
@@ -49,11 +49,11 @@ export default class Strawberry extends Component {
         indexAnthracnose = "No Data";
       }
 
-      // setup botrytis risk level
+      // Botrytis risk thresholds
       let botrytis = { index: indexBotrytis };
       if (indexBotrytis !== "No Data") {
         if (indexBotrytis < 0.5) {
-          botrytis["riskLevel"] = "Low";
+          botrytis["riskLevel"] = "No Risk";
           botrytis["color"] = "#00A854";
         } else if (indexBotrytis >= 0.5 && indexBotrytis < 0.7) {
           botrytis["riskLevel"] = "Moderate";
@@ -64,14 +64,14 @@ export default class Strawberry extends Component {
         }
       }
 
-      // setup anthracnose risk level
+      // Anthracnose risk thresholds
       let anthracnose = { index: indexAnthracnose };
       if (indexAnthracnose !== "No Data") {
-        if (indexAnthracnose < 0.5) {
-          anthracnose["riskLevel"] = "Low";
+        if (indexAnthracnose < 0.15) {
+          anthracnose["riskLevel"] = "No Risk";
           anthracnose["color"] = "#00A854";
-        } else if (indexAnthracnose >= 0.5 && indexAnthracnose < 0.7) {
-          anthracnose["riskLevel"] = "Moderate";
+        } else if (indexAnthracnose >= 0.15 && indexAnthracnose < 0.5) {
+          anthracnose["riskLevel"] = "Moderate ";
           anthracnose["color"] = "#FFBF00";
         } else {
           anthracnose["riskLevel"] = "High";
@@ -112,12 +112,11 @@ export default class Strawberry extends Component {
     const forecastText = date => {
       return (
         <Flex justify="center" align="center" column>
-          <Value>
-            {format(date, "MMM D")}
-          </Value>
+          <Value>{format(date, "MMM D")}</Value>
           {startDateYear === currentYear &&
-            isAfter(date, endDate) &&
-            <Info style={{ color: "#4D3919" }}>Forecast</Info>}
+            isAfter(date, endDate) && (
+              <Info style={{ color: "#4D3919" }}>Forecast</Info>
+            )}
         </Flex>
       );
     };
@@ -128,21 +127,19 @@ export default class Strawberry extends Component {
           <Flex style={{ fontSize: ".6rem" }} column>
             <Box col={12} lg={6} md={6} sm={12}>
               <Box col={12} lg={12} md={12} sm={12}>
-                {record.missingDays.length > 1
-                  ? <div>
-                      No data available for the following{" "}
-                      {record.cumulativeMissingDays} dates:{" "}
-                    </div>
-                  : <div>No data available for the following date:</div>}
+                {record.missingDays.length > 1 ? (
+                  <div>
+                    No data available for the following{" "}
+                    {record.cumulativeMissingDays} dates:{" "}
+                  </div>
+                ) : (
+                  <div>No data available for the following date:</div>
+                )}
               </Box>
             </Box>
             <br />
             <Box col={12} lg={6} md={6} sm={12}>
-              {record.missingDays.map((date, i) =>
-                <div key={i}>
-                  - {date}
-                </div>
-              )}
+              {record.missingDays.map((date, i) => <div key={i}>- {date}</div>)}
             </Box>
           </Flex>
         );
@@ -157,9 +154,7 @@ export default class Strawberry extends Component {
           <Value mb={1} style={{ color: record.color }}>
             {text}
           </Value>
-          <Info style={{ background: record.color }}>
-            {record.riskLevel}
-          </Info>
+          <Info style={{ background: record.color }}>{record.riskLevel}</Info>
         </Flex>
       );
     };
@@ -200,7 +195,7 @@ export default class Strawberry extends Component {
       <Flex column align="center">
         <Box w={["100%", "90%", "90%"]}>
           <Heading fontSize={[3, 3, 4]}>
-            <i>Strawberry</i> results for {" "}
+            <i>Strawberry</i> results for{" "}
             <span style={{ color: "#4c4177" }}>
               {station.name}, {state.postalCode}
             </span>
@@ -209,35 +204,37 @@ export default class Strawberry extends Component {
           <Flex column>
             <Flex>
               <Box mt={1} w={["100%", "90%", "90%"]}>
-                {displayPlusButton
-                  ? <Table
-                      bordered
-                      size={mobile ? "small" : "middle"}
-                      columns={columns}
-                      rowKey={record => record.date}
-                      loading={ACISData.length === 0}
-                      pagination={false}
-                      dataSource={
-                        areRequiredFieldsSet
-                          ? takeRight(strawberries, 8).map(day => day)
-                          : null
-                      }
-                      expandedRowRender={record => description(record)}
-                    />
-                  : <Table
-                      // rowClassName={(rec, idx) => this.rowColor(idx)}
-                      bordered
-                      size="middle"
-                      columns={columns}
-                      rowKey={record => record.date}
-                      loading={ACISData.length === 0}
-                      pagination={false}
-                      dataSource={
-                        areRequiredFieldsSet
-                          ? takeRight(strawberries, 8).map(day => day)
-                          : null
-                      }
-                    />}
+                {displayPlusButton ? (
+                  <Table
+                    bordered
+                    size={mobile ? "small" : "middle"}
+                    columns={columns}
+                    rowKey={record => record.date}
+                    loading={ACISData.length === 0}
+                    pagination={false}
+                    dataSource={
+                      areRequiredFieldsSet
+                        ? takeRight(strawberries, 8).map(day => day)
+                        : null
+                    }
+                    expandedRowRender={record => description(record)}
+                  />
+                ) : (
+                  <Table
+                    // rowClassName={(rec, idx) => this.rowColor(idx)}
+                    bordered
+                    size="middle"
+                    columns={columns}
+                    rowKey={record => record.date}
+                    loading={ACISData.length === 0}
+                    pagination={false}
+                    dataSource={
+                      areRequiredFieldsSet
+                        ? takeRight(strawberries, 8).map(day => day)
+                        : null
+                    }
+                  />
+                )}
               </Box>
             </Flex>
 
@@ -252,9 +249,12 @@ export default class Strawberry extends Component {
               <Box>
                 <A
                   target="_blank"
-                  href={`http://forecast.weather.gov/MapClick.php?textField1=${station.lat}&textField2=${station.lon}`}
+                  href={`http://forecast.weather.gov/MapClick.php?textField1=${
+                    station.lat
+                  }&textField2=${station.lon}`}
                 >
-                  {" "}Forecast Details
+                  {" "}
+                  Forecast Details
                 </A>
               </Box>
             </Flex>
@@ -287,9 +287,7 @@ export default class Strawberry extends Component {
           </Flex>
         </Box>
 
-        <Box w={["100%", "90%", "90%"]}>
-          {/* {isGraph && <Graph />} */}
-        </Box>
+        <Box w={["100%", "90%", "90%"]}>{/* {isGraph && <Graph />} */}</Box>
       </Flex>
     );
   }

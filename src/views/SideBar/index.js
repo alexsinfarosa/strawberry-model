@@ -65,29 +65,45 @@ class SideBar extends Component {
           </Button>
         </Box>
 
-        {subject.graph &&
+        {subject.graph && (
           <Box>
             <Button size="large" icon="bar-chart" onClick={this.toggleGraph}>
               {isGraph ? "Hide Graph" : "Display Graph"}
             </Button>
-          </Box>}
+          </Box>
+        )}
 
-        {true &&
-          <Flex my={4} column>
-            <h4>Risk Levels</h4>
-            <Flex my={1}>
-              <RiskLevel color="#00A854">Low</RiskLevel>
-              <Box ml={1}>Less than 0.5</Box>
-            </Flex>
-            <Flex my={1}>
-              <RiskLevel color="#FFBF00">Moderate</RiskLevel>
-              <Box ml={1}>Between 0.5 and 0.7</Box>
-            </Flex>
-            <Flex my={1}>
-              <RiskLevel color="#F04134">High</RiskLevel>
-              <Box ml={1}>Above 0.7</Box>
-            </Flex>
-          </Flex>}
+        <Flex my={4} column>
+          <h4>Botritys Risk Levels</h4>
+          <Flex my={1}>
+            <RiskLevel color="#00A854">No Risk</RiskLevel>
+            <Box ml={1}> &lt;0.5</Box>
+          </Flex>
+          <Flex my={1}>
+            <RiskLevel color="#FFBF00">Moderate</RiskLevel>
+            <Box ml={1}>&ge;0.5 and &lt;0.7</Box>
+          </Flex>
+          <Flex my={1}>
+            <RiskLevel color="#F04134">High</RiskLevel>
+            <Box ml={1}>&ge;0.7</Box>
+          </Flex>
+        </Flex>
+
+        <Flex my={4} column>
+          <h4>Anthracnose Risk Levels</h4>
+          <Flex my={1}>
+            <RiskLevel color="#00A854">No Risk</RiskLevel>
+            <Box ml={1}>&lt;0.15</Box>
+          </Flex>
+          <Flex my={1}>
+            <RiskLevel color="#FFBF00">Moderate</RiskLevel>
+            <Box ml={1}>&ge;0.15 and &lt;0.5</Box>
+          </Flex>
+          <Flex my={1}>
+            <RiskLevel color="#F04134">High</RiskLevel>
+            <Box ml={1}>&ge;0.5</Box>
+          </Flex>
+        </Flex>
 
         <Acknowledgements />
         <MoreInfo />
