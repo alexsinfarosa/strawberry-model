@@ -24,38 +24,39 @@ class RightContent extends Component {
       <div
         style={{ display: "flex", flexDirection: "column", height: "100vh" }}
       >
-        {this.props.mobile
-          ? <Header>
-              <TextIcon>
-                <IconStyled
-                  type="menu-unfold"
-                  onClick={toggleSidebar}
-                  style={{ marginRight: 10 }}
-                />
-                <div>
-                  {subject.name} Forecast Models
-                </div>
-              </TextIcon>
-              <div>NEWA</div>
-            </Header>
-          : <Header>
-              <div>
+        {this.props.mobile ? (
+          <Header>
+            <TextIcon>
+              <IconStyled
+                type="menu-unfold"
+                onClick={toggleSidebar}
+                style={{ marginRight: 10 }}
+              />
+              <div style={{ letterSpacing: "1px" }}>
                 {subject.name} Forecast Models
               </div>
-              <div>
-                <div style={{ textAlign: "right" }}>NEWA</div>
-                <div style={{ fontSize: ".7rem", letterSpacing: "1px" }}>
-                  Network for Environment and Weather Applications
-                </div>
+            </TextIcon>
+            <div>NEWA</div>
+          </Header>
+        ) : (
+          <Header>
+            <div>{subject.name} Forecast Models</div>
+            <div>
+              <div style={{ textAlign: "right" }}>NEWA</div>
+              <div style={{ fontSize: ".7rem", letterSpacing: "2px" }}>
+                Network for Environment and Weather Applications
               </div>
-            </Header>}
+            </div>
+          </Header>
+        )}
 
         <MainContent>
-          {state.name === "All States" &&
+          {state.name === "All States" && (
             <h3>
               Click one of the icons on the map or select a state and a station
               from the left panel.
-            </h3>}
+            </h3>
+          )}
           <br />
           {isMap && <Map {...this.props} />}
           {areRequiredFieldsSet && <Strawberry {...this.props} />}

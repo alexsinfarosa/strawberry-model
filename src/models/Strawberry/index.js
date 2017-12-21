@@ -217,7 +217,7 @@ export default class Strawberry extends Component {
                         ? takeRight(strawberries, 8).map(day => day)
                         : null
                     }
-                    expandedRowRender={record => description(record)}
+                    // expandedRowRender={record => description(record)}
                   />
                 ) : (
                   <Table

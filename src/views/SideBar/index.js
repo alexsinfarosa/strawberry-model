@@ -74,7 +74,7 @@ class SideBar extends Component {
         )}
 
         <Flex my={4} column>
-          <h4>Botritys Risk Levels</h4>
+          <h4>Botrytis Risk Levels</h4>
           <Flex my={1}>
             <RiskLevel color="#00A854">No Risk</RiskLevel>
             <Box ml={1}> &lt;0.5</Box>

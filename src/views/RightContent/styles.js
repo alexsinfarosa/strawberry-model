@@ -7,11 +7,12 @@ export const Header = styled.div`
   flex: 0 0 auto;
   display: flex;
   justify-content: space-between;
-  background: #c44645;
+  background: #f04134;
   color: white;
   padding: 16px;
-  font-size: 1.3em;
+  font-size: 1.4em;
   height: 60px;
+  letter-spacing: 1px;
 `;
 
 export const TextIcon = styled.div`
@@ -21,7 +22,7 @@ export const TextIcon = styled.div`
 
 export const IconStyled = styled(Icon)`
   color: white;
-  opacity: .8;
+  opacity: 0.8;
   font-size: 1em;
 
   &:hover {
