@@ -38,10 +38,8 @@ class Subject extends Component {
     const { endDate } = this.props.store.app;
     return (
       <div style={{ marginBottom: "2rem" }}>
-        <label>Date:</label>
-        <div><small>Start Date: January 1st</small></div>
-
         <DatePicker
+          disabled={this.props.blossom ? true : false}
           style={{ width: 200 }}
           size="large"
           allowClear={false}

@@ -57,7 +57,20 @@ class SideBar extends Component {
         <Subject size={this.props.size} />
         <State size={this.props.size} />
         <Station size={this.props.size} />
-        <DatePicker size={this.props.size} />
+        <div>
+          <small>
+            <b>Model starts on March 1st</b>
+          </small>
+        </div>
+        <br />
+        <div>
+          <small>Date of Interest:</small>
+        </div>
+        <DatePicker size={this.props.size} blossom={false} />
+        <div>
+          <small>Strawberry Blossom Date:</small>
+        </div>
+        <DatePicker size={this.props.size} blossom={true} />
 
         <Box mb={2} mt={2}>
           <Button size="large" icon="environment-o" onClick={this.toggleMap}>

@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { Box } from "reflexbox";
-import { CSVLink } from "react-csv";
 
 export const Value = styled(Box)`
-  font-size: .85rem;
+  font-size: 0.85rem;
 
   @media (max-width: 992px) {
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
   @media (max-width: 768px) {
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 `;
 
@@ -17,10 +16,9 @@ export const Info = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: .75rem;
+  font-size: 0.75rem;
   min-width: 60%;
-  ${"" /* height: 20px; */}
-  color: white;
+  ${"" /* height: 20px; */} color: white;
   border-radius: 5px;
   letter-spacing: 1px;
   margin: 0 auto;
@@ -28,14 +26,12 @@ export const Info = styled(Box)`
   padding-bottom: 1px;
 
   @media (max-width: 992px) {
-    font-size: .75rem;
+    font-size: 0.75rem;
     min-width: 60%;
-
   }
   @media (max-width: 768px) {
-    font-size: .65rem;
+    font-size: 0.65rem;
     min-width: 80%;
-
   }
 `;
 

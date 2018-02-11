@@ -170,5 +170,21 @@ export default class AppStore {
 
   // Strawberry model
   @observable strawberries = [];
-  @action setStrawberries = d => this.strawberries.push(d);
+  @action
+  setStrawberries = d => {
+    this.strawberries.push(d);
+  };
+
+  @observable CSVData = [];
+  @action
+  setCSVData = () => {
+    this.CSVData = [];
+    console.log(this.CSVData.length);
+    this.strawberries.forEach(obj => {
+      const date = obj.date;
+      const anthracnose = obj.anthracnose.index;
+      const botrytis = obj.botrytis.index;
+      this.CSVData.push({ date, anthracnose, botrytis });
+    });
+  };
 }
