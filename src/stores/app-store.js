@@ -54,7 +54,7 @@ export default class AppStore {
   @observable
   subjects = [
     {
-      name: "Strawberries",
+      name: "Strawberry diseases",
       diseases: ["botrytis", "anthracnose"],
       graph: false
     }
@@ -62,7 +62,7 @@ export default class AppStore {
 
   @observable
   subject = JSON.parse(localStorage.getItem("strawberries")) || {
-    name: "Strawberries",
+    name: "Strawberry diseases",
     diseases: ["botrytis", "anthracnose"],
     graph: false
   };

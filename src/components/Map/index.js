@@ -54,7 +54,7 @@ export default class TheMap extends Component {
     const { stationsWithMatchedIcons, state, protocol } = this.props.store.app;
     // const {mobile} = this.props;
 
-    const MarkerList = stationsWithMatchedIcons.map(station =>
+    const MarkerList = stationsWithMatchedIcons.map(station => (
       <Marker
         key={`${station.id} ${station.network}`}
         // network={station.network}
@@ -64,7 +64,7 @@ export default class TheMap extends Component {
         title={station.name}
         onClick={this.onClickSetStation}
       />
-    );
+    ));
 
     // const MyPopupMarker = ({ name, lat,  lon }) => (
     //   <Marker position={[lat, lon]}>
@@ -86,7 +86,7 @@ export default class TheMap extends Component {
 
     return (
       <Flex justify="center">
-        <Box mb={2} w={["100%", "90", "90%"]}>
+        <Box mb={3} w={"100%"}>
           <MapContainer
             zoomControl={true}
             scrollWheelZoom={false}

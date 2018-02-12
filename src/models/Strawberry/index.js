@@ -218,13 +218,13 @@ export default class Strawberry extends Component {
         <Box>
           {!isSeason ? (
             <Flex column>
-              <Heading fontSize={[3, 3, 4]} style={{ textAlign: "center" }}>
+              <Heading fontSize={[2, 3, 4]} style={{ textAlign: "center" }}>
                 <div style={{ color: "#de4f3f" }}>
-                  Strawberries Forecast Models
+                  Strawberry Disease Forecast Models
                 </div>
                 <br />
                 <div style={{ fontSize: "1rem" }}>
-                  Results from these models will be availabe beginning March
+                  Results from these models will be available beginning March
                   1st.
                 </div>
               </Heading>
@@ -257,8 +257,8 @@ export default class Strawberry extends Component {
             </Flex>
           ) : (
             <Flex column>
-              <Heading fontSize={[1, 1, 2]}>
-                <i>Strawberry</i> management for{" "}
+              <Heading fontSize={[2, 3, 4]}>
+                <i>Strawberry</i> disease management for{" "}
                 <span style={{ color: "#de4f3f" }}>
                   {station.name}, {state.postalCode}
                 </span>
@@ -273,7 +273,7 @@ export default class Strawberry extends Component {
               <Flex type="flex" justify="space-between" align="center">
                 <Box>
                   <Heading fontSize={[1, 1, 2]}>
-                    <i>Strawberry</i> predictions for{" "}
+                    <i>Strawberry</i> disease predictions for{" "}
                     <span style={{ color: "#de4f3f" }}>
                       {station.name}, {state.postalCode}
                     </span>

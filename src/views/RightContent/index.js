@@ -32,15 +32,15 @@ class RightContent extends Component {
                 onClick={toggleSidebar}
                 style={{ marginRight: 10 }}
               />
-              <div style={{ letterSpacing: "1px" }}>
-                {subject.name} Forecast Models
+              <div style={{ letterSpacing: "1px", fontSize: "0.9rem" }}>
+                Strawberry Disease Forecast Models
               </div>
             </TextIcon>
-            <div>NEWA</div>
+            <div style={{ letterSpacing: "1px", fontSize: "0.9rem" }}>NEWA</div>
           </Header>
         ) : (
           <Header>
-            <div>{subject.name} Forecast Models</div>
+            <div>Strawberry Disease Forecast Models</div>
             <div>
               <div style={{ textAlign: "right" }}>NEWA</div>
               <div style={{ fontSize: ".7rem", letterSpacing: "2px" }}>

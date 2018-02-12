@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Map } from "react-leaflet";
 
 export const MapContainer = styled(Map)`
-  width: 90%;
+  width: 100%;
   height: 500px;
   z-index: 0;
   /*margin-bottom: 2rem;*/
@@ -17,6 +17,5 @@ export const MapContainer = styled(Map)`
   @media (max-width: 480px) {
     height: 300px;
     width: 100%;
-
   }
 `;
