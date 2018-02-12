@@ -13,6 +13,13 @@ export const Header = styled.div`
   font-size: 1.4em;
   height: 60px;
   letter-spacing: 1px;
+
+  @media (max-width: 992px) {
+    font-size: 0.7rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
 `;
 
 export const TextIcon = styled.div`
