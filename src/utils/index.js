@@ -28,6 +28,8 @@ export const matchIconsToStations = (protocol, stations, state) => {
       station.network === "newa" ||
       station.network === "njwx" ||
       station.network === "miwx" ||
+      station.network === "oardc" ||
+      station.network === "nysm" ||
       ((station.network === "cu_log" || station.network === "culog") &&
         station.state !== "NY")
     ) {
@@ -58,7 +60,13 @@ export const matchIconsToStations = (protocol, stations, state) => {
 // Handling Temperature parameter and Michigan network id adjustment
 export const networkTemperatureAdjustment = network => {
   // Handling different temperature parameter for each network
-  if (network === "newa" || network === "icao" || network === "njwx") {
+  if (
+    network === "newa" ||
+    network === "icao" ||
+    network === "njwx" ||
+    network === "oardc" ||
+    network === "nysm"
+  ) {
     return "23";
   } else if (
     network === "miwx" ||
