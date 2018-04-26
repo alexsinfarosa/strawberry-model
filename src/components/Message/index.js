@@ -14,12 +14,12 @@ export default class Message extends Component {
       {
         disease: "Botrytis",
         message:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem hic asperiores, excepturi deserunt quia aperiam est quibusdam animi voluptate reiciendis nobis velit provident blanditiis tempora repudiandae officiis accusamus commodi recusandae."
+          "Disease management messages will appear here when the strawberry diseases model is in NEWA"
       },
       {
         disease: "Anthracnose",
         message:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sint officia nostrum nihil in aspernatur aperiam dolorem, quas dolores qui aliquam odit non consequuntur perferendis eaque, molestiae, dolor assumenda iste"
+          "Disease management messages will appear here when the strawberry diseases model is in NEWA"
       }
     ];
     const columns = [
