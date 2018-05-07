@@ -1,6 +1,7 @@
 .table {
 
-  font-size: .85rem !important;
+  font-size: 1rem !important;
+  color: black
 
   @media (max-width: 992px) {
     font-size: .85rem;
@@ -27,13 +28,13 @@
 
 table > .ant-table-thead > tr > th{
   text-align: center;
-  font-size: .85rem !important;
+  font-size: .9rem !important;
 
   @media (max-width: 992px) {
     font-size: .75rem;
   }
   @media (max-width: 768px) {
-    font-size: .70rem;
+    font-size: .80rem;
   }
   @media (max-width: 400px) {
     font-size: .80rem;
@@ -42,6 +43,8 @@ table > .ant-table-thead > tr > th{
 
 .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
   word-break: normal !important;
+  font-size: 1rem !important;
+
 }
 
 .low {
@@ -57,12 +60,24 @@ table > .ant-table-thead > tr > th{
 }
 
 .past {
+  color: black;
   background: #B9E4F9;
-}
-.forecast {
-  background: #FAFFDF;
+  height: 60px;
 }
 
+.today > * {
+  background: white;
+  font-size: 1.5rem !important;
+  color: black;
+  font-weight: bolder;
+  height: 60px;
+}
+
+.forecast {
+  color: black;
+  background: #FAFFDF;
+  height: 60px;
+}
 
 /* use css to set position of modal */
 // Use flex which not working in IE

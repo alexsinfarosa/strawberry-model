@@ -7,6 +7,8 @@ import format from "date-fns/format";
 import isAfter from "date-fns/is_after";
 import isBefore from "date-fns/is_before";
 import isThisYear from "date-fns/is_this_year";
+import isToday from "date-fns/is_today";
+
 // import isWithinRange from "date-fns/is_within_range";
 import IconNewa from "components/newa-logo.svg";
 //  reflexbox
@@ -16,7 +18,7 @@ import { Flex, Box, Heading } from "rebass";
 import "styles/shared.styl";
 
 // styled components
-import { Value, Info, A } from "./styles";
+import { Value, A } from "./styles";
 
 import Table from "antd/lib/table";
 import "antd/lib/table/style/css";
@@ -58,19 +60,21 @@ export default class Strawberry extends Component {
       if (indexAnthracnose === "NaN") {
         indexAnthracnose = "No Data";
       }
-
       // Botrytis risk thresholds
       let botrytis = { index: indexBotrytis };
       if (indexBotrytis !== "No Data") {
         if (indexBotrytis < 0.5) {
           botrytis["riskLevel"] = "No Risk";
           botrytis["color"] = "#00A854";
+          botrytis["date"] = day.dateTable;
         } else if (indexBotrytis >= 0.5 && indexBotrytis < 0.7) {
           botrytis["riskLevel"] = "Moderate";
           botrytis["color"] = "#FFBF00";
+          botrytis["date"] = day.dateTable;
         } else {
           botrytis["riskLevel"] = "High";
           botrytis["color"] = "#F04134";
+          botrytis["date"] = day.dateTable;
         }
       }
 
@@ -80,12 +84,15 @@ export default class Strawberry extends Component {
         if (indexAnthracnose < 0.15) {
           anthracnose["riskLevel"] = "No Risk";
           anthracnose["color"] = "#00A854";
+          anthracnose["date"] = day.dateTable;
         } else if (indexAnthracnose >= 0.15 && indexAnthracnose < 0.5) {
           anthracnose["riskLevel"] = "Moderate ";
           anthracnose["color"] = "#FFBF00";
+          anthracnose["date"] = day.dateTable;
         } else {
           anthracnose["riskLevel"] = "High";
           anthracnose["color"] = "#F04134";
+          anthracnose["date"] = day.dateTable;
         }
       }
 
@@ -94,12 +101,20 @@ export default class Strawberry extends Component {
     }
   };
 
-  rowColor = idx => {
-    if (idx > 2) {
-      return "forecast";
-    } else {
-      return "past";
+  rowColor = rec => {
+    const today = format(new Date(), "YYYY-MM-DD");
+    if (isThisYear(rec.date)) {
+      if (isBefore(today, rec.date)) {
+        return "forecast";
+      }
+      if (isAfter(today, rec.date)) {
+        return "past";
+      }
+      if (isToday(today, rec.date)) {
+        return "today";
+      }
     }
+    return "";
   };
 
   render() {
@@ -111,7 +126,7 @@ export default class Strawberry extends Component {
       areRequiredFieldsSet,
       state,
       endDate,
-      currentYear,
+
       startDateYear,
       strawberries
     } = this.props.store.app;
@@ -134,49 +149,41 @@ export default class Strawberry extends Component {
     const forecastText = date => {
       return (
         <Flex justify="center" align="center" column>
-          <Value>{format(date, "MMM D")}</Value>
-          {startDateYear === currentYear &&
-            isAfter(date, endDate) && (
-              <Info style={{ color: "#4D3919" }}>Forecast</Info>
-            )}
+          {!isToday(date, new Date()) ? (
+            <Value>{format(date, "MMM D")}</Value>
+          ) : (
+            <Value style={{ fontSize: "1.2rem" }}>
+              {format(date, "MMM D")}
+            </Value>
+          )}
         </Flex>
       );
     };
 
-    // const description = record => {
-    //   if (record.missingDays.length > 0) {
-    //     return (
-    //       <Flex style={{ fontSize: ".6rem" }} column>
-    //         <Box col={12} lg={6} md={6} sm={12}>
-    //           <Box col={12} lg={12} md={12} sm={12}>
-    //             {record.missingDays.length > 1 ? (
-    //               <div>
-    //                 No data available for the following{" "}
-    //                 {record.cumulativeMissingDays} dates:{" "}
-    //               </div>
-    //             ) : (
-    //               <div>No data available for the following date:</div>
-    //             )}
-    //           </Box>
-    //         </Box>
-    //         <br />
-    //         <Box col={12} lg={6} md={6} sm={12}>
-    //           {record.missingDays.map((date, i) => <div key={i}>- {date}</div>)}
-    //         </Box>
-    //       </Flex>
-    //     );
-    //   }
-    //   return null;
-    // };
-
     const riskLevel = (text, record, i) => {
-      // console.log(text, record, i);
+      if (record.missingDay === 1)
+        return (
+          <Flex justify="center" align="center">
+            <Value>N/A</Value>
+          </Flex>
+        );
+
       return (
-        <Flex justify="center" align="center" column>
-          <Value mb={1} style={{ color: record.color }}>
-            {text}
-          </Value>
-          <Info style={{ background: record.color }}>{record.riskLevel}</Info>
+        <Flex
+          justify="center"
+          align="center"
+          style={{
+            background: `${record.color}`,
+            borderRadius: "5px",
+            color: "white",
+            padding: "1px 0"
+          }}
+        >
+          {!isToday(record.date, new Date()) ? (
+            <Value>{text}</Value>
+          ) : (
+            <Value style={{ fontSize: "1.2rem" }}>{text}</Value>
+          )}
         </Flex>
       );
     };
@@ -191,7 +198,7 @@ export default class Strawberry extends Component {
         render: date => forecastText(date)
       },
       {
-        title: "Index & Risk Levels",
+        title: "Infection Risk Levels",
         children: [
           {
             title: "Botrytis",
@@ -294,7 +301,7 @@ export default class Strawberry extends Component {
 
               <Flex my={2} column>
                 <Table
-                  // rowClassName={(rec, idx) => this.rowColor(idx)}
+                  rowClassName={rec => this.rowColor(rec)}
                   bordered
                   size="middle"
                   columns={columns}
@@ -305,7 +312,7 @@ export default class Strawberry extends Component {
                 />
 
                 <Flex mt={2} mb={3} justify="space-between" align="baseline">
-                  <Box>NA - not available</Box>
+                  <Box>N/A - not available</Box>
 
                   <Box>
                     <A

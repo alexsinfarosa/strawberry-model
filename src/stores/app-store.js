@@ -179,7 +179,7 @@ export default class AppStore {
   @action
   setCSVData = () => {
     this.CSVData = [];
-    console.log(this.CSVData.length);
+    // console.log(this.CSVData.length);
     this.strawberries.forEach(obj => {
       const date = obj.date;
       const anthracnose = obj.anthracnose.index;
