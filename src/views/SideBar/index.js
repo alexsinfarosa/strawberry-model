@@ -61,13 +61,13 @@ class SideBar extends Component {
         <div>Date of Interest:</div>
         <DatePicker size={this.props.size} blossom={false} />
 
-        <div>Strawberry Bloom Date:</div>
+        {/**<div>Strawberry Bloom Date:</div>
         <DatePicker size={this.props.size} blossom={true} />
 
         <div>Last fungicide application Date:</div>
-        <DatePicker size={this.props.size} blossom={true} />
+        <DatePicker size={this.props.size} blossom={true} />**/}
 
-        <Box mb={2} mt={2}>
+        <Box mb={2} mt={4}>
           <Button size="large" icon="environment-o" onClick={this.toggleMap}>
             {isMap ? "Hide Map" : "Display Map"}
           </Button>
